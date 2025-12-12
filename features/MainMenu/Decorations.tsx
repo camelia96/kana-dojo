@@ -190,9 +190,10 @@ const KanjiCharacter = ({
       style={{
         color: styles.color,
         transformOrigin: 'center center',
+        pointerEvents: interactive && animState !== 'idle' ? 'none' : undefined,
         ...getAnimationStyle()
       }}
-      onClick={interactive ? handleClick : undefined}
+      onClick={interactive && animState === 'idle' ? handleClick : undefined}
     >
       {char}
     </span>
