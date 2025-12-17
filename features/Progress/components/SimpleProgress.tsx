@@ -14,6 +14,7 @@ import {
   AlertDialogTitle
 } from '@/shared/components/ui/alert-dialog';
 import { ActionButton } from '@/shared/components/ui/ActionButton';
+import { useClick } from '@/shared/hooks/useAudio';
 // import yodaCage from "./yodaCage.png";
 
 // Simple Card component to replace the missing UI component
@@ -59,6 +60,7 @@ const CardContent = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function SimpleProgress() {
+  const { playClick } = useClick();
   const { allTimeStats, clearAllProgress } = useStatsStore();
   const [showResetModal, setShowResetModal] = useState(false);
 
@@ -91,13 +93,16 @@ export default function SimpleProgress() {
 
   return (
     <div className='space-y-6'>
-      <div className='flex justify-between items-end'>
-        <h1 className='text-3xl font-bold text-[var(--main-color)]'>
+      <div className='flex justify-between items-center'>
+        <h1 className='text-3xl font-medium text-[var(--main-color)]'>
           Your Progress
         </h1>
 
         <ActionButton
-          onClick={() => setShowResetModal(true)}
+          onClick={() => {
+            setShowResetModal(true);
+            playClick();
+          }}
           colorScheme='secondary'
           borderColorScheme='secondary'
           borderBottomThickness={4}
