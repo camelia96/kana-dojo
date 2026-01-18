@@ -11,7 +11,7 @@ permissions:
 
 # Prevent overlapping runs for the same PR
 concurrency:
-  group: community-data-updates
+  group: community-pr-merge-close-issue
   cancel-in-progress: false
 
 jobs:
