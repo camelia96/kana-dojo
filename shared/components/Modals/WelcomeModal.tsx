@@ -435,10 +435,10 @@ const WelcomeModal = () => {
                               className='cursor-pointer rounded-lg p-3 transition-all duration-200 hover:opacity-90 active:scale-95'
                               style={{
                                 background,
-                                border:
+                                outline:
                                   localTheme === theme.id
-                                    ? `1px solid ${theme.mainColor}`
-                                    : `1px solid ${theme.borderColor}`,
+                                    ? `3px solid ${theme.secondaryColor}`
+                                    : 'none',
                               }}
                               onClick={() => {
                                 playClick();
@@ -468,7 +468,6 @@ const WelcomeModal = () => {
                                     className='text-sm capitalize'
                                     style={{ color: theme.mainColor }}
                                   >
-                                    {localTheme === theme.id && '\u2B24 '}
                                     {theme.id.replaceAll('-', ' ')}
                                   </span>
                                 )}
@@ -527,11 +526,14 @@ const WelcomeModal = () => {
                     key={fontObj.name}
                     className={clsx(
                       'flex cursor-pointer items-center justify-center overflow-hidden rounded-xl border-0 px-4 py-4 transition-all duration-200 hover:opacity-90 active:scale-95',
-                      localFont === fontObj.name
-                        ? 'border-(--main-color)'
-                        : 'border-(--card-color)',
                     )}
-                    style={{ backgroundColor: 'var(--background-color)' }}
+                    style={{
+                      backgroundColor: 'var(--background-color)',
+                      outline:
+                        localFont === fontObj.name
+                          ? '3px solid var(--secondary-color)'
+                          : 'none',
+                    }}
                     onClick={() => {
                       playClick();
                       setLocalFont(fontObj.name);
@@ -544,9 +546,6 @@ const WelcomeModal = () => {
                         fontObj.font.className,
                       )}
                     >
-                      <span className='text-(--secondary-color)'>
-                        {localFont === fontObj.name ? '\u2B24 ' : ''}
-                      </span>
                       <span className='text-(--main-color)'>
                         {fontObj.name}
                         {fontObj.name === 'Zen Maru Gothic' &&
